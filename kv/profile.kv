@@ -1,0 +1,98 @@
+<ProfileScreen>:
+    name: 'profile'
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: "20dp"
+        spacing: "10dp"
+
+        MDToolbar:
+            id: toolbar
+            title: "View Profile"
+            left_action_items: [['arrow-left', lambda x: app.back_to_home()]]
+            right_action_items: app.get_profile_toolbar_items() if app.viewing_own_profile else []
+            elevation: 10
+
+        ScrollView:
+            MDBoxLayout:
+                orientation: 'vertical'
+                padding: "10dp"
+                spacing: "20dp"
+                adaptive_height: True
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: "10dp"
+                    spacing: "10dp"
+                    pos_hint: {"center_x": 0.5}
+
+                    Image:
+                        source: "profile_image.png"  # This should be the path to the shared profile image
+                        size_hint: None, None
+                        size: "100dp", "100dp"
+                        pos_hint: {'center_x': 0.5}
+
+                    MDLabel:
+                        id: full_name
+                        text: app.profile_info.get('first_name', '') + " " + app.profile_info.get('last_name', '')
+                        font_style: "H5"
+                        halign: "center"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+                    MDLabel:
+                        id: headline
+                        text: app.profile_info.get('headline', '..') or '..'
+                        font_style: "Subtitle1"
+                        halign: "center"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+                    MDLabel:
+                        id: industry
+                        text: app.profile_info.get('industry', '')
+                        font_style: "Body1"
+                        halign: "center"
+                        theme_text_color: "Custom"
+                        text_color: 0.5, 0.5, 0.5, 1
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+                    MDLabel:
+                        id: location
+                        text: app.profile_info.get('location', '')
+                        font_style: "Body1"
+                        halign: "center"
+                        theme_text_color: "Custom"
+                        text_color: 0.5, 0.5, 0.5, 1
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+                    MDLabel:
+                        id: contact_info
+                        text: app.profile_info.get('contact_info', '')
+                        font_style: "Body1"
+                        halign: "center"
+                        theme_text_color: "Custom"
+                        text_color: 0.5, 0.5, 0.5, 1
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+                    MDLabel:
+                        id: website
+                        text: app.profile_info.get('website', '')
+                        font_style: "Body1"
+                        halign: "center"
+                        theme_text_color: "Custom"
+                        text_color: 0.5, 0.5, 0.5, 1
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+        MDFloatingActionButton:
+            icon: "message"
+            md_bg_color: app.theme_cls.primary_color
+            text_color: 1, 1, 1, 1  # White color for the icon
+            pos_hint: {"right": 0.95, "y": 0.1}
+            on_release: app.open_messaging_page()

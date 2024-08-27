@@ -1,0 +1,48 @@
+<SignupScreen>:
+    name: 'signup'
+    MDLabel:
+        text: 'Sign Up'
+        halign: 'center'
+        font_style: 'H4'
+        pos_hint: {'center_y': 0.9}
+    MDTextField:
+        id: first_name
+        hint_text: 'First Name'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+        size_hint_x: None
+        width: 300
+    MDTextField:
+        id: last_name
+        hint_text: 'Last Name'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+        size_hint_x: None
+        width: 300
+    MDTextField:
+        id: email
+        hint_text: 'Email'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        size_hint_x: None
+        width: 300
+    MDTextField:
+        id: password
+        hint_text: 'Password'
+        password: True
+        pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+        size_hint_x: None
+        width: 300
+    MDRaisedButton:
+        text: 'Sign Up'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+        on_release:
+            root.register(email.text, password.text, first_name.text, last_name.text)
+    MDLabel:
+        id: signup_message
+        text: ''
+        halign: 'center'
+        color: 1, 0, 0, 1
+        pos_hint: {'center_y': 0.25}
+    MDRaisedButton:
+        text: 'Sign In'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.2}
+        on_release:
+            app.root.current = 'login'

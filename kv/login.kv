@@ -1,0 +1,47 @@
+<LoginScreen>:
+    name: 'login'
+    MDLabel:
+        text: 'LinkedIn'
+        halign: 'center'
+        font_style: 'H4'
+        pos_hint: {'center_y': 0.9}
+    MDTextField:
+        id: email
+        hint_text: 'Email'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+        size_hint_x: None
+        width: 300
+    MDTextField:
+        id: password
+        hint_text: 'Password'
+        password: True
+        pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+        size_hint_x: None
+        width: 300
+    MDRaisedButton:
+        text: 'Sign In'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        on_release:
+            root.login(email.text, password.text)
+    MDLabel:
+        id: login_message
+        text: ''
+        halign: 'center'
+        color: 1, 0, 0, 1
+        pos_hint: {'center_y': 0.45}
+    MDSeparator:
+        height: '1dp'
+        pos_hint: {'center_y': 0.4}
+    MDTextButton:
+        text: 'Forgot Password?'
+        theme_text_color: 'Custom'
+        text_color: 0, 0, 1, 1  # Blue color
+        font_style: 'Caption'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.35}
+        halign: 'center'
+        on_release: app.root.current = 'password_reset'
+    MDRaisedButton:
+        text: 'Join LinkedIn'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.25}
+        on_release:
+            app.root.current = 'signup'

@@ -1,0 +1,69 @@
+<MessagingScreen>:
+    name: 'messaging'
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: "20dp"
+        spacing: "10dp"
+
+        MDToolbar:
+            id: toolbar
+            title: "Messaging"
+            left_action_items: [['arrow-left', lambda x: app.back_to_home()]]
+            elevation: 10
+
+        ScrollView:
+            id: scroll_view
+            do_scroll_x: False
+            do_scroll_y: True
+
+            MDBoxLayout:
+                id: chat_list
+                orientation: 'vertical'
+                padding: "10dp"
+                spacing: "5dp"
+                size_hint_y: None
+                height: self.minimum_height  # This ensures the height of the BoxLayout matches its content
+
+        MDLabel:
+            id: no_user_selected_label
+            text: "No user selected."
+            halign: "center"
+            size_hint_y: None
+            height: self.texture_size[1]
+            opacity: 1  # Ensure this is visible when no user is selected
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '48dp'
+
+            MDTextField:
+                id: message_input
+                hint_text: "Write a message"
+                mode: "rectangle"
+                on_text_validate: app.root.get_screen('messaging').send_message()
+
+            MDRaisedButton:
+                text: "Send"
+                on_release: app.root.get_screen('messaging').send_message()
+                size_hint_x: None
+                width: '100dp'
+
+
+<ChatBubble>:
+    size_hint: 1, None
+    height: self.minimum_height
+    padding: "10dp"
+    radius: [15, 15, 15, 15]
+    md_bg_color: app.theme_cls.bg_darkest if root.is_current_user else app.theme_cls.primary_light
+
+    MDLabel:
+        text: root.message
+        theme_text_color: "Custom"
+        text_color: (0, 0, 0, 1)
+        size_hint_y: None
+        halign: "left" if root.is_current_user else "right"
+        valign: "middle"
+        text_size: self.width, None
+        height: self.texture_size[1]

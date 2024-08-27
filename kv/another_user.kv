@@ -1,0 +1,51 @@
+<AnotherUserScreen>:
+    name: 'another_user'
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDToolbar:
+            title: "User Profile"
+            left_action_items: [['arrow-left', lambda x: app.back_to_home()]]
+            elevation: 10
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: "20dp"
+            spacing: "10dp"
+
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: "150dp"
+                padding: "10dp"
+
+                Image:
+                    id: another_user_profile_image
+                    source: "default_profile.png"
+                    size_hint: None, None
+                    size: "120dp", "120dp"
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+            MDLabel:
+                id: another_user_full_name
+                text: "First Name Last Name"
+                font_style: "H5"
+                halign: "center"
+                size_hint_y: None
+                height: self.texture_size[1]
+
+            MDLabel:
+                id: another_user_headline
+                text: "User headline"
+                font_style: "Subtitle1"
+                halign: "center"
+                size_hint_y: None
+                height: self.texture_size[1]
+
+        MDFloatingActionButton:
+            icon: "message"
+            md_bg_color: app.theme_cls.primary_color
+            pos_hint: {'right': 0.95, 'y': 0.1}
+            on_release: app.open_messaging_page()
+

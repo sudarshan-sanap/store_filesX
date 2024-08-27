@@ -1,0 +1,33 @@
+<PostFeedScreen>:
+    name: 'post_feed'
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: "20dp"
+        spacing: "10dp"
+
+        MDToolbar:
+            title: "Create Post"
+            left_action_items: [['arrow-left', lambda x: app.back_to_home()]]
+            right_action_items: [['image-plus', lambda x: root.open_file_chooser()], ['send', lambda x: root.create_post(post_content.text, selected_image.source)]]
+            elevation: 10
+
+        ScrollView:
+            MDBoxLayout:
+                orientation: 'vertical'
+                padding: "10dp"
+                spacing: "20dp"
+                adaptive_height: True
+
+                MDTextField:
+                    id: post_content
+                    hint_text: "What's on your mind?"
+                    multiline: True
+
+                Image:
+                    id: selected_image
+                    source: root.image_url
+                    size_hint: None, None
+                    size: '200dp', '200dp'
+                    allow_stretch: True
+                    opacity: 0  # Initially hidden

@@ -1,0 +1,87 @@
+<EditProfileScreen>:
+    name: 'edit_profile'
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: "20dp"
+        spacing: "10dp"
+
+        MDToolbar:
+            title: "Edit Profile"
+            left_action_items: [['arrow-left', lambda x: app.back_to_home()]]
+            elevation: 10
+
+        ScrollView:
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                padding: "10dp"
+                spacing: "10dp"
+
+                MDTextField:
+                    id: first_name
+                    hint_text: "First Name*"
+                    size_hint_x: None
+                    width: 300
+
+                MDTextField:
+                    id: last_name
+                    hint_text: "Last Name*"
+                    size_hint_x: None
+                    width: 300
+
+                MDTextField:
+                    id: additional_name
+                    hint_text: "Additional Name"
+                    size_hint_x: None
+                    width: 300
+
+                MDTextField:
+                    id: headline
+                    hint_text: "headline*"
+                    size_hint_x: None
+                    width: 300
+
+                MDTextField:
+                    id: current_position
+                    hint_text: "Current Position*"
+                    size_hint_x: None
+                    width: 300
+
+                MDTextField:
+                    id: industry
+                    hint_text: "Industry*"
+                    size_hint_x: None
+                    width: 300
+
+                MDTextField:
+                    id: education
+                    hint_text: "Education"
+                    size_hint_x: None
+                    width: 300
+
+                MDTextField:
+                    id: location
+                    hint_text: "Location*"
+                    size_hint_x: None
+                    width: 300
+
+                MDTextField:
+                    id: contact_info
+                    hint_text: "Contact Info"
+                    size_hint_x: None
+                    width: 300
+
+                MDTextField:
+                    id: website
+                    hint_text: "Website"
+                    size_hint_x: None
+                    width: 300
+
+                MDRaisedButton:
+                    text: "Save"
+                    md_bg_color: 0, 1, 0, 1  # Green color
+                    pos_hint: {'center_x': 0.5}
+                    on_release:
+                        root.save_profile_info(first_name.text, last_name.text, additional_name.text, headline.text, current_position.text, industry.text, education.text, location.text, contact_info.text, website.text)

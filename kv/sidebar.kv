@@ -1,0 +1,80 @@
+<Sidebar>:
+    id: nav_drawer
+    BoxLayout:
+        orientation: 'vertical'
+        padding: "8dp"
+        spacing: "8dp"
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: "80dp"
+            padding: "8dp"
+
+            Image:
+                id: sidebar_profile_image
+                source: "profile_image.png"
+                size_hint: None, None
+                size: "56dp", "56dp"
+                pos_hint: {'center_x': 0.5}
+
+            MDIconButton:
+                icon: "camera"
+                pos_hint: {'center_y': 0.5}
+                on_release: app.open_file_chooser()
+
+        MDLabel:
+            id: full_name_label
+            text: app.profile_info.get('first_name', '') + " " + app.profile_info.get('last_name', '')
+            font_style: "Subtitle1"
+            size_hint_y: None
+            height: self.texture_size[1]
+            halign: 'center'
+            pos_hint: {'center_x': 0.5}
+            text_size: self.width, None
+            valign: 'middle'
+
+        MDTextButton:
+            text: "View"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 1, 1  # Blue color
+            font_style: "Button"
+            size_hint_y: None
+            height: self.texture_size[1]
+            halign: 'center'
+            pos_hint: {'center_x': 0.5}
+            on_release: app.view_profile()
+
+        MDTextButton:
+            text: "Edit Profile"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 1, 1  # Blue color
+            font_style: "Button"
+            size_hint_y: None
+            height: self.texture_size[1]
+            halign: 'center'
+            pos_hint: {'center_x': 0.5}
+            on_release: app.edit_intro()
+
+        ScrollView:
+            MDList:
+                OneLineListItem:
+                    text: "Saved posts"
+                    on_release: app.saved_posts()
+                OneLineListItem:
+                    text: "Settings"
+                    on_release: app.settings()
+
+        BoxLayout:
+            size_hint_y: None
+            height: "60dp"
+            padding: "8dp"
+
+            MDTextButton:
+                text: "Sign Out"
+                theme_text_color: "Custom"
+                text_color: 0.5, 0.5, 0.5, 1  # Grey color
+                font_style: "Button"
+                bold: True
+                halign: 'left'
+                on_release: app.sign_out()
